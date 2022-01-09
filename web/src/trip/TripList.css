@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap');
+
+.trip-preview {
+    font-family: 'Kanit', sans-serif;
+    display: flex;
+    margin-top: 2rem;
+}
+
+.headimage {
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+}
+
+.headimage img {
+    max-width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.mini-image img{
+    margin: 10px;
+    max-width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.body {
+    margin-top: 1rem;
+}
+
+
+.tag{
+    font-size: 13px;
+}
+
+@media only screen and (max-width: 480px) {
+    .trip-preview {
+        display: block;
+    }
+    .headimage img {
+        width: 100%;
+    }
+}
