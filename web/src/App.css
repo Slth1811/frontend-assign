@@ -35,3 +35,9 @@ input{
 textarea:focus, input:focus{
   outline: none;
 }
+
+@media only screen and (max-width: 480px) {
+  .App{
+    margin: 2rem 1rem;
+  }
+}

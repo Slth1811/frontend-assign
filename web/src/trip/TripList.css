@@ -36,11 +36,25 @@
     font-size: 13px;
 }
 
+.Error-message{
+    display: flex;
+    justify-content: center;
+    font-family: serif;
+    margin-top: 5rem;
+    color:rgb(173, 0, 0);
+
+}
+
 @media only screen and (max-width: 480px) {
     .trip-preview {
         display: block;
     }
     .headimage img {
-        width: 100%;
+        max-width: 100%;
+
+    }
+    .mini-image {
+        display: flex;
+        justify-content: center;
     }
 }

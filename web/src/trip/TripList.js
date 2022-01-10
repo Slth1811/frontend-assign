@@ -2,9 +2,20 @@ import React from "react";
 import "./TripList.css";
 
 const TripList = ({ trips }) => {
+    const max_length = 150; // maximum length of description string
+    // if (trips.length === 0) // empty list
+    // {
+    //     return (
+    //         <div className="Error-message">
+    //             <h2>Trip list is not available.</h2>
+    //         </div>
+    //     )
+    // }
+    
     return (
         <div className="trip-list">
-            {trips.map((trip) => (
+            {trips.length ? (
+                trips.map((trip) => (
                 <div className="trip-preview" key={trip.eid}>
                     <div className="headimage">
                         <img src={trip.photos[0]}></img>
@@ -13,7 +24,7 @@ const TripList = ({ trips }) => {
                         <div className="head">
                             <h2>{trip.title}</h2>
                             <div className="description">
-                                <p>{trip.description.substring(0,150)}...</p>
+                                <p>{trip.description.substring(0,max_length)}...</p>
                                 <a href={trip.url} target="_blank">อ่านต่อ</a>
                                 <div className="tag">หมวด: {trip.tags.join(", ")}</div>
                             </div>
@@ -25,7 +36,12 @@ const TripList = ({ trips }) => {
                         </div>
                     </div>
                 </div>
-            ))}
+            ))
+            ) : (
+                <h2 className="Error-message">Loading...</h2>
+            )
+        }
+            
         </div>
     );
 };

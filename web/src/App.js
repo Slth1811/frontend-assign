@@ -3,18 +3,30 @@ import "./App.css";
 import TripList from "./trip/TripList";
 
 function App() {
+  const API_URL = "http://localhost:9000/trips"
   const [trips, setTrips] = useState([]);
   const [searchWord, setSearch] = useState("");
+  const [fetchError, setFetchError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:9000/trips")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setTrips(data);
-      });
-  }, []);
+
+    const fetchItem = async () => {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw Error('Did not received expected data')
+        const listTrips = await response.json();
+        setTrips(listTrips);
+        setFetchError(null);
+      }
+      catch (err) {
+        console.log(err.message);
+        setFetchError(err.message);
+      }
+    }
+
+    (async () => await fetchItem())();
+  }, [])
+
 
   const searchKey = (posts) => {
     return posts.filter(
@@ -36,9 +48,13 @@ function App() {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
+      {fetchError && <h2 className="Error-message">{`Error: ${fetchError}`}</h2>}
+      {!fetchError && 
       <div className="list">
-        <TripList trips={searchKey(trips)} />
+          <TripList trips={searchKey(trips)} />
+
       </div>
+      }
     </div>
   );
 }
